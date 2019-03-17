@@ -27,6 +27,14 @@ docker-compose up
 
 ビルド & run
 
+## 環境変数
+
+- `NODE_ENV`: log出力に違いあり
+- `WS_PORT`: Socketサーバーのポート変更 (default: `3000`)
+- `REDIS_HOST`: Redisサーバーのホスト (default: `127.0.0.1`)
+
+portは現状デフォルト6379で固定している
+
 ## Socket.IO エンドポイントの変更
 
 server:
