@@ -8,15 +8,17 @@
     "watch-ts": "tsc --watch",
     "watch-node": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
-    "watch2": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\" \"yarn run lint-watch\"",
+    "watch2": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node, Lint\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\" \"yarn run lint-watch\"",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "lint": "eslint src/** --ext .ts,.tsx",
     "lint:fix": "yarn lint --fix",
     "lint-watch": "esw -w --color src/** --ext .ts,.tsx"
   },
   "dependencies": {
+    "@types/log4js": "^2.3.5",
     "express": "^4.16.4",
     "ioredis": "^4.6.2",
+    "log4js": "^4.0.2",
     "socket.io": "^2.2.0",
     "socket.io-redis": "^5.2.0"
   },

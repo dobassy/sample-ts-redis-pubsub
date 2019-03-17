@@ -1,4 +1,5 @@
 import ioRedis from "ioredis";
+import logger from "./utils/logger";
 
 export default class SubscribeCapture {
   private subscriber: ioRedis.Redis;
@@ -21,9 +22,12 @@ export default class SubscribeCapture {
     this.subscriber.on(
       "pmessage",
       (pattern: string, channel: string, message: string) => {
-        console.log(`pattern: ${pattern}`);
-        console.log(`channel: ${channel}`);
-        console.log(`message: ${message}`);
+        logger.info(
+          "[CAPTURE_LOG] pattern: %s, channel: %s, message: %s",
+          pattern,
+          channel,
+          message
+        );
       }
     );
   }
