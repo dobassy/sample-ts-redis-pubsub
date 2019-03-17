@@ -1,21 +1,25 @@
 import socketIo from "socket.io";
-import socketIoRedis from "socket.io-redis";
-import os from "os"
+import redisAdapter from "socket.io-redis";
+import os from "os";
 
 export default (server: any) => {
-  let io = socketIo(server, {path: "/ws"});
-  io.adapter(socketIoRedis({host: '127.0.0.1', port: 6379}));
+  const io = socketIo(server, {path: "/ws"});
+  const adapter = redisAdapter({host: '127.0.0.1', port: 6379})
+  adapter.pubClient.on('error', () => {
+    console.log("Redis connection error")
+  });
+  io.adapter(adapter)
 
-  io.on("connection", function(socket: any) {
+  io.on("connection", (socket: any) => {
     console.log(`connected: ${os.hostname()} connected, id: ${socket.id}`);
 
-    socket.on("ping", function(message: any) {
+    socket.on("ping", (message: any) => {
       console.log("pong");
 
       socket.broadcast.emit("message", "pong");
     });
 
-    socket.on("message", function(message: any) {
+    socket.on("message", (message: any) => {
       console.log(message);
 
       socket.broadcast.emit("message", `${message}`);
@@ -25,4 +29,6 @@ export default (server: any) => {
       console.log(`disconnected, id: ${socket.id}`);
     });
   });
+
+  return io;
 }
