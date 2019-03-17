@@ -8,10 +8,11 @@
     "watch-ts": "tsc --watch",
     "watch-node": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
-    "watch2": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\" \"yarn run lint\"",
+    "watch2": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\" \"yarn run lint-watch\"",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "lint": "eslint src/** --ext .ts,.tsx",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "lint-watch": "esw -w --color src/** --ext .ts,.tsx"
   },
   "dependencies": {
     "express": "^4.16.4",
@@ -31,6 +32,7 @@
     "eslint": "^5.15.2",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "eslint-watch": "^5.0.1",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4",
     "typescript": "^3.3.3333"
