@@ -11,7 +11,7 @@ const io = socket(httpServer);
 const capture = new SubscribeCapture();
 capture.start();
 
-app.get("/", (req: any, res: any) => {
+app.get("/client/", (req: any, res: any) => {
   res.sendFile(path.resolve("./client/index.html"));
 });
 
