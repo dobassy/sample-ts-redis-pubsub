@@ -6,13 +6,26 @@
 yarn global add typescript
 ```
 
-## 便利なコマンドメモ
+## コマンドメモ
 
 ```
 tsc -w
 ```
 
 ウォッチモードになるので自動でコンパイルしてくれる。
+
+```
+yarn run watch2
+```
+
+開発用。tsコンパイルとnode再起動とes-lintを実行してくれる。内容的には `package.json` 記載の通り。
+
+```
+docker build -t sample-ts-redis-pubsub:0.1.0 .  
+docker-compose up
+```
+
+ビルド & run
 
 ## Socket.IO エンドポイントの変更
 
